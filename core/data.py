@@ -15,7 +15,10 @@ class CustomImage(Dataset):
     def __init__(self, dir: str, cla: list = None,
                  trans: torchvision.transforms = None) -> object:
         """
-        :rtype: object
+        Args:
+            dir
+            cla -> clases to select
+            trans -> applied transformations
         """
         super(CustomImage, self).__init__()
 
@@ -35,8 +38,9 @@ class CustomImage(Dataset):
 
     def _find_class(self) -> tuple:
         """
-        :finds the class names in a given folder:
-        :return classes, target:
+        Returns:
+            classes
+            target
         """
         if self.cla:
             classes = [d.name for d in os.scandir(self.dir) if d.is_dir() and d.name in self.cla]
@@ -95,8 +99,11 @@ class CustomImage(Dataset):
 
     def tester(self):
         """
+        Args:
+            Object
+        Returns:
+            None
 
-        :return None:
         """
         for i, j in self.sampled:
             try:
